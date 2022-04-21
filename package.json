@@ -1,0 +1,28 @@
+{
+  "name": "smoothie-recipes",
+  "version": "1.0.0",
+  "description": "this project is simple web application with purpose of practicing authentication using cookie, I may develop this project in future. I used node.js, express.js, ejs and mongodb as database",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniial79/smoothie-recipes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniial79/smoothie-recipes/issues"
+  },
+  "homepage": "https://github.com/daniial79/smoothie-recipes#readme",
+  "dependencies": {
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
