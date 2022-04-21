@@ -18,9 +18,11 @@ app.set('views', 'src/views');
 
 //importing routers
 const mainPageRouters = require('./routes/mainPages.routes');
+const authRouters = require('./routes/auth.routes');
 
 //deploying routers
 app.use(mainPageRouters);
+app.use(authRouters);
 
 //exporting section
 module.exports = app;
