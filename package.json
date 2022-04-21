@@ -4,7 +4,8 @@
   "description": "this project is simple web application with purpose of practicing authentication using cookie, I may develop this project in future. I used node.js, express.js, ejs and mongodb as database",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "env-cmd -f ./src/env/dev.env nodemon src/server.js"
   },
   "repository": {
     "type": "git",
