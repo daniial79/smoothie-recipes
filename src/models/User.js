@@ -1,6 +1,7 @@
 //third party packages and libs 
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcrypt');
 
 //user schema 
 const userSchema = new mongoose.Schema({
@@ -18,6 +19,16 @@ const userSchema = new mongoose.Schema({
         minlength: [7, 'password must be at least 7 characters']
     }
 });
+
+//mongoose hooks 
+
+//hashing the password before saving it ro database
+userSchema.pre('save', async function(next){
+    const user = this;
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+    next();
+})
 
 //modelizing user schema 
 const User = mongoose.model('user', userSchema);
