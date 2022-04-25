@@ -1,6 +1,9 @@
 //User model
 const User = require('../models/User');
 
+//User model error handler
+const handleUserErrors = require('../errors/model errors');
+
 //logic section
 
 //rendering signup form
@@ -17,9 +20,9 @@ const postSignUp = async  (req, res) => {
             user
         })
     }catch(error){
-        console.log(error);
+        const userFriendlyError = handleUserErrors(error);
         res.status(400).json({
-            error: 'unable to create use'
+            errors: userFriendlyError
         })
     }
 }

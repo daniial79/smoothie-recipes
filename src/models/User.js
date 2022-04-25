@@ -6,15 +6,16 @@ const validator = require('validator');
 const userSchema = new mongoose.Schema({
     email:{
         type: String,
-        required: true,
-        uniqure: true,
-        trim: true
+        required: [true, 'email is required'],
+        unique: [true, 'email must be unique'],
+        trim: true,
+        validate: [validator.isEmail, 'email is invalid']
     },
 
     password: {
         type: String,
-        required: true,
-        minlength: 7
+        required: [true, 'password is required'],
+        minlength: [7, 'password must be at least 7 characters']
     }
 });
 
