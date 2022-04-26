@@ -16,7 +16,7 @@ router.post('/signup', authControllers.postSignUp);
 router.get('/login', authControllers.getLogIn);
 
 //posting login form data
-router.post('/login', authControllers.postLogIn)
+router.post('/login', authControllers.postLogIn);
 
 //exporting section
 module.exports = router;
