@@ -13,12 +13,48 @@
 
 <script>
   const form = document.querySelector('form');
-  form.addEventListener('submit', (e) => {
+  const emailError = document.querySelector('.email.error');
+  const passwordError = document.querySelector('.password.error');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // reset error fields
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
     // get values
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    try{
+      const res = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      })
+
+      const data = await res.json();
+
+      if(data.errors){
+        if(data.errors.email){
+          emailError.textContent = data.errors.email;
+        }
+        if(data.errors.password){
+          passwordError.textContent = data.errors.password;
+        }
+      }
+
+      if(data.user){
+        location.assign('/');
+      }
+    }catch(error){
+      console.log(error);
+    }
   });
 </script>
 

@@ -1,8 +1,12 @@
+//third-party packages and libs
+const jwt = require('jsonwebtoken');
+
 //User model
 const User = require('../models/User');
 
-//User model error handler
+//helper and handler functions
 const handleUserErrors = require('../errors/model errors');
+const generateAuthToken = require('../helpers/authTokenGenerator');
 
 //logic section
 
@@ -16,8 +20,13 @@ const postSignUp = async  (req, res) => {
     const user = new User(req.body);
     try{
         await user.save();
+        const token = await generateAuthToken(user);
+        res.cookie('authToken', token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 3
+        })
         res.status(201).json({
-            user
+            user: user._id
         })
     }catch(error){
         const userFriendlyError = handleUserErrors(error);
