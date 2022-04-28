@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 //helper and handler functions
-const handleUserErrors = require('../errors/model errors');
+const handleAuthError = require('../errors/signInLogInErrorHandler');
 const generateAuthToken = require('../helpers/authTokenGenerator');
 
 //logic section
@@ -29,7 +29,7 @@ const postSignUp = async  (req, res) => {
             user: user._id
         })
     }catch(error){
-        const userFriendlyError = handleUserErrors(error);
+        const userFriendlyError = handleAuthError.signUpErrorHandler(error);
         res.status(400).json({
             errors: userFriendlyError
         })

@@ -1,5 +1,5 @@
 //handling mongoose errors for user model 
-const handleUserErrors = (error) => {
+const signUpErrorHandler = (error) => {
     const userFriendlyError = {}, errors = error.errors, errorCode = error.code;
     if(errorCode === 11000){
         userFriendlyError.email = 'email must be unique';
@@ -16,4 +16,6 @@ const handleUserErrors = (error) => {
 }
 
 //exporting section
-module.exports = handleUserErrors;
+module.exports = {
+    signUpErrorHandler
+};
