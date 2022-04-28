@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
 //helper and handler functions
-const handleAuthError = require('../errors/signInLogInErrorHandler');
+const generalAuthErrorHandler = require('../errors/authErrorHandler');
 
 //logic section
 
@@ -28,7 +28,7 @@ const postSignUp = async  (req, res) => {
             user: user._id
         })
     }catch(error){
-        const userFriendlyError = handleAuthError.signUpErrorHandler(error);
+        const userFriendlyError = generalAuthErrorHandler(error);
         res.status(400).json({
             errors: userFriendlyError
         })
@@ -58,10 +58,9 @@ const postLogIn = async (req, res) => {
             user: foundUser._id
         })
     }catch(error){
+        const userFriendlyError = generalAuthErrorHandler(error);
         res.status(400).json({
-            errors:{
-                messages: error.messages
-            }
+            errors: userFriendlyError
         })
     }   
 

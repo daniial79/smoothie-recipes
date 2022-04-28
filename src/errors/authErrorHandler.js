@@ -1,6 +1,11 @@
 //handling mongoose errors for user model 
-const signUpErrorHandler = (error) => {
+const generalAuthErrorHandler = (error) => {
     const userFriendlyError = {}, errors = error.errors, errorCode = error.code;
+    if(error.message === 'unable to login'){
+        userFriendlyError.message = 'unable to login';
+        return userFriendlyError
+    }
+    
     if(errorCode === 11000){
         userFriendlyError.email = 'email must be unique';
         return userFriendlyError
@@ -15,7 +20,9 @@ const signUpErrorHandler = (error) => {
     }  
 }
 
+
+
+
+
 //exporting section
-module.exports = {
-    signUpErrorHandler
-};
+module.exports = generalAuthErrorHandler
