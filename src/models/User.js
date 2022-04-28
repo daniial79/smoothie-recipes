@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //user schema 
 const userSchema = new mongoose.Schema({
@@ -19,6 +20,35 @@ const userSchema = new mongoose.Schema({
         minlength: [7, 'password must be at least 7 characters']
     }
 });
+
+//ading generateAuthToken to User Instance
+userSchema.methods.generateAuthToken = async function(_id){
+    try{
+        const token = await jwt.sign({_id}, process.env.JWT_SECRET, {
+            expiresIn: '1d'
+        });
+        return token
+    }catch(error){
+        throw new Error('something went wrong in generating jwt!');
+    }
+}
+
+//adding findByCredentials method to User model
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email });
+
+    if(!user){
+        throw new Error('unable to login');
+    }
+
+    const passwordIsMatch = await bcrypt.compare(password, user.password);
+
+    if(!passwordIsMatch){
+        throw new Error('unable to login');
+    }
+    
+    return user;
+}
 
 //mongoose hooks 
 

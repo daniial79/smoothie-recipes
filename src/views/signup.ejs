@@ -40,14 +40,12 @@
 
       const data = await res.json();
 
+
       if(data.errors){
-        if(data.errors.email){
           emailError.textContent = data.errors.email;
-        }
-        if(data.errors.password){
           passwordError.textContent = data.errors.password;
-        }
       }
+
 
       if(data.user){
         location.assign('/');
