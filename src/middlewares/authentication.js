@@ -17,7 +17,6 @@ const authenticate =  (req, res, next) => {
             res.redirect('/login');
         }
     }else{
-        console.log(decodedToken);
         res.redirect('/login');
     }
 }

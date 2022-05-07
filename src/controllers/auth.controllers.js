@@ -66,10 +66,17 @@ const postLogIn = async (req, res) => {
 
 }
 
+//logout logic
+const getLogOut = (req, res) => {
+    res.cookie('authToken', '', {  maxAge: 1 })
+    res.redirect('/');
+}
+
 //exporting section 
 module.exports = {
     getSignUp,
     postSignUp,
     getLogIn,
-    postLogIn
+    postLogIn,
+    getLogOut
 }

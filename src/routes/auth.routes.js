@@ -18,5 +18,8 @@ router.get('/login', authControllers.getLogIn);
 //posting login form data
 router.post('/login', authControllers.postLogIn);
 
+//logout router
+router.get('/logout', authControllers.getLogOut);
+
 //exporting section
 module.exports = router;
