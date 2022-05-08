@@ -12,5 +12,5 @@ const dataBaseUri = process.env.DB_URI;
 mongoose.connect(dataBaseUri, { 
     useNewUrlParser: true
 })
-  .then((result) => server.listen(port, hostName, () => console.log(`server is up and running at port ${port}`)))
+  .then((result) => server.listen(port, () => console.log(`server is up and running at port ${port}`)))
   .catch((err) => console.log(err));
