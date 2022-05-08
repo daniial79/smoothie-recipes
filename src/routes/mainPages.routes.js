@@ -5,7 +5,7 @@ const router = require('express').Router();
 const mainPagesControllers= require('../controllers/mainPages.controllers');
 
 //importing authentication middleware
-const authenticate = require('../middlewares/authentication');
+const {authenticate} = require('../middlewares/authentication');
 
 //rendering home page
 router.get('/', mainPagesControllers.renderHomePage);
