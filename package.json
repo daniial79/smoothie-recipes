@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "env-cmd -f ./src/env/dev.env nodemon src/server.js"
+    "dev": "env-cmd -f .env nodemon src/server.js"
   },
   "repository": {
     "type": "git",
